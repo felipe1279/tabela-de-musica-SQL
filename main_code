@@ -1,0 +1,111 @@
+--tabela primaria
+create table musica (
+    ID int PRIMARY KEY,
+    codnomedamusica varchar(100),
+    codautor int,
+    gravadoraID int,
+    codalbum int,
+    codgenero int
+);
+
+--tabelas "segundarias"
+create table autor(
+    codautor int PRIMARY KEY,
+    nomedoautor varchar(100),
+    canal varchar(100)
+);
+
+create table gravadora(
+    gravadoraID int PRIMARY KEY,
+    nomegravadora varchar(100),
+    codendereco int,
+    telefone int
+);
+
+create table genero(
+    codgenero int PRIMARY KEY,
+    descgenero varchar(60),
+    subgenero varchar(60)
+);
+
+
+create table album(
+    codalbum int PRIMARY KEY,
+    titulo varchar(100),
+    codautor int
+);    
+
+create table endereco(
+    codendereco int PRIMARY KEY,
+    numero int,
+    localidade varchar(100),
+    cep int,
+    estado varchar(100)
+);
+
+-- inserindo valores nas tabelas.
+INSERT INTO musica (ID,codnomedamusica,codautor,gravadoraID,codalbum,codgenero)
+    VALUES
+    (1,'zumbi',1, 2, 1, 1),
+    (2,'Numero 1', 2, 2, 2, 2),
+    (3,'Pressão', 3, 2, 3, 3),
+    (4, 'Quem sou ?', 4, 2, 4, 4),
+    (5,'Bananinhas', 5, 1, 5, 5);
+
+INSERT INTO autor (codautor,nomedoautor,canal)
+    VALUES
+    (1, 'Pejota*', '@Pejota10'),
+    (2, 'Okabe', '@OkabeOficial'),
+    (3, 'Blxck', '@blxckoficial'),
+    (4, 'Slow GM', '@SlowGM'),
+    (5, 'João', '@Joãogamer');
+
+INSERT INTO gravadora (gravadoraID, nomegravadora, codendereco, telefone)
+    VALUES
+    (1, 'João recordes',1, 11964620635),
+    (2, 'Não Pertencente á uma gravadora', 2, NULL);
+    
+INSERT INTO genero (codgenero,descgenero,subgenero)
+    VALUES
+    (1, 'Geek', 'RAP/Trap'),
+    (2, 'Geek', 'Trap'),
+    (3, 'Geek', 'Rock'),
+    (4, 'Geek', 'Pop'),
+    (5, 'Rock', 'trap');
+
+INSERT INTO album (codalbum,titulo,codautor)
+    VALUES
+    (1, 'DRILL', 1),
+    (2, 'Lua Superior 1(Kokushibo)', 2),
+    (3, Null, 3),
+    (4, 'Quem sou ?', 4),
+    (5, 'JuaoBananico', 5);
+
+INSERT INTO endereco (codendereco,numero,localidade,cep,estado)
+    VALUES
+    (1, 255, 'santacatarina', 8921737, 'São Paulo'),
+    (2, NULL, Null, NULL, NULL);
+
+--Area de testes
+SELECT 
+    m.ID, 
+    m.codnomedamusica, 
+    a.nomedoautor AS autor,
+    g.nomegravadora, 
+    al.titulo, 
+    ge.descgenero, 
+    ge.subgenero
+FROM musica m
+JOIN autor a ON m.codautor = a.codautor
+JOIN gravadora g ON m.gravadoraID = g.gravadoraID
+JOIN album al ON m.codalbum = al.codalbum
+JOIN genero ge ON m.codgenero = ge.codgenero;
+
+
+
+
+
+
+
+
+
