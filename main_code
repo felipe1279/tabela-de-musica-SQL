@@ -32,7 +32,8 @@ create table genero(
 create table album(
     codalbum int PRIMARY KEY,
     titulo varchar(100),
-    codautor int
+    codautor int,
+    codgenero int
 );    
 
 create table endereco(
@@ -73,13 +74,13 @@ INSERT INTO genero (codgenero,descgenero,subgenero)
     (4, 'Geek', 'Pop'),
     (5, 'Rock', 'trap');
 
-INSERT INTO album (codalbum,titulo,codautor)
+INSERT INTO album (codalbum,titulo,codautor,codgenero)
     VALUES
-    (1, 'DRILL', 1),
-    (2, 'Lua Superior 1(Kokushibo)', 2),
-    (3, Null, 3),
-    (4, 'Quem sou ?', 4),
-    (5, 'JuaoBananico', 5);
+    (1, 'DRILL', 1, 1),
+    (2, 'Lua Superior 1(Kokushibo)', 2, 2),
+    (3, Null, 3, 3),
+    (4, 'Quem sou ?', 4, 4),
+    (5, 'JuaoBananico', 5, 5);
 
 INSERT INTO endereco (codendereco,numero,localidade,cep,estado)
     VALUES
@@ -100,12 +101,6 @@ JOIN autor a ON m.codautor = a.codautor
 JOIN gravadora g ON m.gravadoraID = g.gravadoraID
 JOIN album al ON m.codalbum = al.codalbum
 JOIN genero ge ON m.codgenero = ge.codgenero;
-
-
-
-
-
-
 
 
 
